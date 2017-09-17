@@ -1,8 +1,11 @@
 0.0.0.0:8080 {
-    root www
+    root /www
     gzip
-    proxy /hypem hypem.com:80 {
+    proxy /hypem https://hypem.com {
         without /hypem
     }
-    log / logs/access.log "{when} Request: {status} {method} {uri}"
+    proxy /test https://api.github.com/zen {
+        without /test
+    }
+    log / stdout "{when} Request: {status} {method} {uri}"
 }
